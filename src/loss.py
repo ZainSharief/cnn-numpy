@@ -1,5 +1,5 @@
 import numpy as np
-from activation import softmax
+from src.activation import softmax
 
 class mse:
 

@@ -1,5 +1,5 @@
 import numpy as np
-from activation import *
+from src.activation import *
 
 class conv2d:
     '''

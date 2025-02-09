@@ -1,5 +1,5 @@
 import tensorflow as tf
-from train import *
+from src.train import *
 
 # Creates an example sequential model
 model = [

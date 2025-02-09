@@ -2,16 +2,16 @@ import numpy as np
 import time
 
 # Imports all written layers
-from conv2d import conv2d
-from maxpool2d import maxpool2d
-from dense import dense
-from flatten import flatten
-from dropout import dropout
-from batchNormalisation import batchNormalisation
+from src.conv2d import conv2d
+from src.maxpool2d import maxpool2d
+from src.dense import dense
+from src.flatten import flatten
+from src.dropout import dropout
+from src.batchNormalisation import batchNormalisation
 
 # Imports the activation and loss functions
-from activation import *
-from loss import *
+from src.activation import *
+from src.loss import *
 
 def initialise(model, input_shape: tuple) -> None:
 # Initialises the layer weights & biases and calculates the output sizes given the input shape
@@ -92,7 +92,7 @@ def train(model, train, validation, loss_function, learning_rate=0.01, learning_
             if hours: time_formatted = f'{hours}:{minutes}:{seconds}' 
             else: time_formatted = f'{minutes}:{seconds}' 
 
-            print(f"\033[Kepoch={e + 1}/{epochs}: batch={batch_num+1}/{len(x_train)}, loss={loss/(batch_num+1):.10f}, accuracy={correct/total:.4f}, time remaining={time_formatted}", end="\r")
+            print(f"\033[Kepoch={e + 1}/{epochs}: batch={batch_num+1}/{len(x_train)}, loss={loss/(batch_num+1):.5f}, accuracy={correct/total:.4f}, time remaining={time_formatted}", end="\r")
         
         # Unsplits the tensors so they can be re-shuffled
         x_train = np.concatenate(x_train, axis=0)
@@ -127,7 +127,7 @@ def train(model, train, validation, loss_function, learning_rate=0.01, learning_
                 correct += np.sum(predictions == true_classes)
                 total += x_batch.shape[0]
             
-            print(f"\nepoch={e + 1}/{epochs}: validation loss={loss/(len(x_val)):.10f}, validation accuracy={correct/total}")
+            print(f"\nepoch={e + 1}/{epochs}: validation loss={loss/(len(x_val)):.5f}, validation accuracy={correct/total}")
 
             # Unsplits the tensors so they can be re-shuffled
             x_val = np.concatenate(x_val, axis=0)
